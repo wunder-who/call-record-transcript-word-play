@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-DATA_PATH = Path(r"Replace your text here")
+DATA_PATH = Path(r"C:\Users\ajith\Desktop\demo_data_synthetic")
 TOP_N = 50
 
 # Load
@@ -28,6 +28,14 @@ transcripts_df = pd.DataFrame(
 
 print("Summary files:", len(summaries))
 print("Transcript files:", len(transcripts))
+print(DATA_PATH.exists())
+print(list(DATA_PATH.glob("*.txt")))
+
+if not transcripts:
+    raise FileNotFoundError(
+        f"No transcript files found in {DATA_PATH.resolve()}. "
+        "Set DATA_PATH to a folder containing *_transcript.share.txt files."
+    )
 
 # Match summaries to transcripts
 def base_name(name):
@@ -97,7 +105,9 @@ for _, row in transcripts_df.iterrows():
         rows.append({"file": row["file"], "sentence": sentence,
                      "compound": compound, "sentiment": sentiment})
 
-transcript_sentences_df = pd.DataFrame(rows)
+transcript_sentences_df = pd.DataFrame(
+    rows, columns=["file", "sentence", "compound", "sentiment"]
+)
 print(transcript_sentences_df["sentiment"].value_counts())
 print(transcript_sentences_df["sentiment"].value_counts(normalize=True).mul(100).round(1))
 
