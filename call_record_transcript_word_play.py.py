@@ -9,11 +9,11 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-DATA_PATH = Path(r"C:\Users\ajith\Desktop\demo_data_synthetic")
+DATA_PATH = Path(r"demo_data_synthetic")
 TOP_N = 50
 
 # Load
-files = list(DATA_PATH.glob("*.txt"))
+files = list(DATA_PATH.glob("*.txt")) - missing file
 transcripts = {
     p.name: p.read_text(encoding="utf-8", errors="ignore")
     for p in files if "transcript" in p.name.lower()
