@@ -1,0 +1,31 @@
+{
+  "project": "Call Record Transcript Word Play",
+  "data_path": "Replace your text here",
+  "inputs": [
+    "*_transcript.share.txt",
+    "*_summary.txt"
+  ],
+  "top_words": 50,
+  "top_trigrams": 30,
+  "sentiment": {
+    "method": "VADER",
+    "positive_threshold": 0.05,
+    "negative_threshold": -0.05
+  },
+  "outputs": [
+    "top_words.csv",
+    "top_bigrams.csv",
+    "top_trigrams.csv",
+    "transcript_sentence_sentiment.csv",
+    "speaker_sentiment_counts.csv",
+    "speaker_sentiment_percentages.csv",
+    "deidentified_speaker_negative_sentences.csv"
+  ],
+  "speaker_labels": [
+    "Speaker 1",
+    "Speaker 2",
+    "Both",
+    "Neutral"
+  ],
+  "de_identified": true
+}
